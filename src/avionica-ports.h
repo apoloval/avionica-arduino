@@ -3,10 +3,6 @@
 
 #include <Arduino.h>
 
-#define AVIONICA_CLOCK_PIN 2
-#define AVIONICA_LATCH_PIN 3
-#define AVIONICA_PORT_COUNT 12
-
 #define AVIONICA_INPUT 1
 #define AVIONICA_S2P 2
 #define AVIONICA_P2S 3

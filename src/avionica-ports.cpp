@@ -2,6 +2,10 @@
 
 #include "avionica-ports.h"
 
+#define AVIONICA_CLOCK_PIN 2
+#define AVIONICA_LATCH_PIN 3
+#define AVIONICA_PORT_COUNT 12
+
 namespace Avionica {
   Port::Port(byte pin0, byte pin1, byte pin2, byte pin3) {
     enabled[0] = enabled[1] = enabled[2] = enabled[3] = false;
