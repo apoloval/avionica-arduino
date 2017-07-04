@@ -7,6 +7,10 @@
 #define AVIONICA_LATCH_PIN 3
 #define AVIONICA_PORT_COUNT 12
 
+#define AVIONICA_INPUT 1
+#define AVIONICA_S2P 2
+#define AVIONICA_P2S 3
+
 namespace Avionica {
   class Port {
   public:
@@ -20,6 +24,9 @@ namespace Avionica {
     //! Read the content of the given line
     //! This must be called after `Avionica::swap()` to take effect.
     word read(byte line);
+
+    //! Read the level from the given line.
+    byte readLevel(byte line);
 
     //! Write the content of the given line
     //! This must be called before `Avionica::swap()` to take effect.
