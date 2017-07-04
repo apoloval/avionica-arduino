@@ -72,7 +72,7 @@ namespace Avionica {
     for (int line = 0; line < 4; line++) {
       if (validLine(line, AVIONICA_P2S)) {
         word value = digitalRead(pin[line]);
-        buffer[line] = (buffer[line] << 1) & value;
+        buffer[line] = (buffer[line] << 1) | value;
       }
     }
   }
@@ -96,7 +96,7 @@ namespace Avionica {
     pinMode(AVIONICA_CLOCK_PIN, OUTPUT);
     pinMode(AVIONICA_LATCH_PIN, OUTPUT);
     digitalWrite(AVIONICA_CLOCK_PIN, LOW);
-    digitalWrite(AVIONICA_LATCH_PIN, HIGH);
+    digitalWrite(AVIONICA_LATCH_PIN, LOW);
   }
 
   void clock_pulse() {
@@ -106,9 +106,9 @@ namespace Avionica {
   }
 
   void latch_pulse() {
-    digitalWrite(AVIONICA_LATCH_PIN, LOW);
-    delay(1);
     digitalWrite(AVIONICA_LATCH_PIN, HIGH);
+    delay(1);
+    digitalWrite(AVIONICA_LATCH_PIN, LOW);
   }
 
   void swap() {
