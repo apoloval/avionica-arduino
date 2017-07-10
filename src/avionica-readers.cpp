@@ -20,3 +20,9 @@ bool Avionica::EdgeReader::hasFallen() {
   prev_level = level;
   return result;
 }
+
+
+Avionica::SerialReader::SerialReader(Avionica::Port& port, byte line)
+  : port(port), line(line) {
+  port.setupLine(line, AVIONICA_P2S);
+}

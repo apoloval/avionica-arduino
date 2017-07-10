@@ -24,6 +24,23 @@ namespace Avionica {
     byte line;
     byte prev_level;
   };
+
+  class SerialReader {
+  public:
+
+    SerialReader(Avionica::Port& port, byte line);
+
+    inline word read() { return port.read(line); }
+
+    inline byte readLowerByte() { return port.read(line); }
+
+    inline byte readUpperByte() { return port.read(line) >> 8; }
+
+  private:
+
+    Avionica::Port& port;
+    byte line;
+  };
 }
 
 #endif
