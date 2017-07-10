@@ -2,5 +2,6 @@
 #define AVIONICA_H
 
 #include <avionica-ports.h>
+#include <avionica-readers.h>
 
 #endif
