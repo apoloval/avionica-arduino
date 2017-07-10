@@ -4,20 +4,25 @@
 #include "avionica-ports.h"
 
 namespace Avionica {
-  class ParallelReader {
+
+  //! A reader object that can be used to read signal edges
+  class EdgeReader {
   public:
 
-    ParallelReader(Avionica::Port& port, byte dav_line, byte data_line);
+    //! Create a edge reader for the given port and line.
+    EdgeReader(Avionica::Port& port, byte line);
 
-    bool dataAvailable();
+    //! True if a raising edge was detected, false otherwise.
+    bool hasRaised();
 
-    word data();
+    //! True if a falling edge was detected, false otherwise.
+    bool hasFallen();
 
   private:
+
     Avionica::Port& port;
-    byte dav_line;
-    byte data_line;
-    word prev_dav;
+    byte line;
+    byte prev_level;
   };
 }
 

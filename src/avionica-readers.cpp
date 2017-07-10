@@ -2,23 +2,21 @@
 
 #include "avionica-readers.h"
 
-Avionica::ParallelReader::ParallelReader(
-  Avionica::Port& port, byte dav_line, byte data_line)
-  : port(port),
-    dav_line(dav_line),
-    data_line(data_line),
-    prev_dav(LOW) {
-  port.setupLine(dav_line, AVIONICA_INPUT);
-  port.setupLine(data_line, AVIONICA_P2S);
+Avionica::EdgeReader::EdgeReader(Avionica::Port& port, byte line)
+  : port(port), line(line), prev_level(LOW) {
+  port.setupLine(line, AVIONICA_INPUT);
 }
 
-bool Avionica::ParallelReader::dataAvailable() {
-  byte dav = port.readLevel(dav_line);
-  bool result = (prev_dav == LOW && dav == HIGH);
-  prev_dav = dav;
+bool Avionica::EdgeReader::hasRaised() {
+  byte level = port.readLevel(line);
+  bool result = (prev_level == LOW && level == HIGH);
+  prev_level = level;
   return result;
 }
 
-word Avionica::ParallelReader::data() {
-  return port.read(data_line);
+bool Avionica::EdgeReader::hasFallen() {
+  byte level = port.readLevel(line);
+  bool result = (prev_level == HIGH && level == LOW);
+  prev_level = level;
+  return result;
 }
