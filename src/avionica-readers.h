@@ -25,15 +25,20 @@ namespace Avionica {
     byte prev_level;
   };
 
+  //! A reader object that can be used to read a serial signal.
   class SerialReader {
   public:
 
+    //! Create a serial reader for the given port and line.
     SerialReader(Avionica::Port& port, byte line);
 
+    //! Read the word from the serial device buffer.
     inline word read() { return port.read(line); }
 
+    //! Read the lower byte from the serial device buffer.
     inline byte readLowerByte() { return port.read(line); }
 
+    //! Read the upper byte from the serial device buffer.
     inline byte readUpperByte() { return port.read(line) >> 8; }
 
   private:

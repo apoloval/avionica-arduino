@@ -24,5 +24,5 @@ bool Avionica::EdgeReader::hasFallen() {
 
 Avionica::SerialReader::SerialReader(Avionica::Port& port, byte line)
   : port(port), line(line) {
-  port.setupLine(line, AVIONICA_P2S);
+  port.setupLine(line, AVIONICA_SERIAL_INPUT);
 }

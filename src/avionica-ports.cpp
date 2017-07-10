@@ -23,18 +23,18 @@ namespace Avionica {
         case AVIONICA_INPUT:
           pinMode(pin[line], INPUT);
           break;
-        case AVIONICA_S2P:
-          pinMode(pin[line], OUTPUT);
-          break;
-        case AVIONICA_P2S:
+        case AVIONICA_SERIAL_INPUT:
           pinMode(pin[line], INPUT);
+          break;
+        case AVIONICA_SERIAL_OUTPUT:
+          pinMode(pin[line], OUTPUT);
           break;
       }
     }
   }
 
   word Port::read(byte line) {
-    if (validLine(line, AVIONICA_P2S)) {
+    if (validLine(line, AVIONICA_SERIAL_INPUT)) {
       return buffer[line];
     } else {
       return 0;
@@ -50,7 +50,7 @@ namespace Avionica {
   }
 
   void Port::write(byte line, word value) {
-    if (validLine(line, AVIONICA_S2P)) {
+    if (validLine(line, AVIONICA_SERIAL_OUTPUT)) {
       buffer[line] = value;
     }
   }
@@ -65,7 +65,7 @@ namespace Avionica {
 
   void Port::send_bit() {
     for (int line = 0; line < 4; line++) {
-      if (validLine(line, AVIONICA_S2P)) {
+      if (validLine(line, AVIONICA_SERIAL_OUTPUT)) {
         digitalWrite(pin[line], buffer[line] & 0x01);
         buffer[line] = buffer[line] >> 1;
       }
@@ -74,7 +74,7 @@ namespace Avionica {
 
   void Port::receive_bit() {
     for (int line = 0; line < 4; line++) {
-      if (validLine(line, AVIONICA_P2S)) {
+      if (validLine(line, AVIONICA_SERIAL_INPUT)) {
         word value = digitalRead(pin[line]);
         buffer[line] = (buffer[line] << 1) | value;
       }

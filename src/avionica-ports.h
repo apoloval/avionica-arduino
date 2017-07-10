@@ -3,9 +3,9 @@
 
 #include <Arduino.h>
 
-#define AVIONICA_INPUT 1
-#define AVIONICA_S2P 2
-#define AVIONICA_P2S 3
+#define AVIONICA_INPUT          1
+#define AVIONICA_SERIAL_INPUT   2
+#define AVIONICA_SERIAL_OUTPUT  3
 
 namespace Avionica {
   class Port {
