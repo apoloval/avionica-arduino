@@ -3,5 +3,6 @@
 
 #include <avionica-ports.h>
 #include <avionica-readers.h>
+#include <avionica-writers.h>
 
 #endif
