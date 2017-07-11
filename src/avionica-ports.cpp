@@ -66,8 +66,8 @@ namespace Avionica {
   void Port::send_bit() {
     for (int line = 0; line < 4; line++) {
       if (validLine(line, AVIONICA_SERIAL_OUTPUT)) {
-        digitalWrite(pin[line], buffer[line] & 0x01);
-        buffer[line] = buffer[line] >> 1;
+        digitalWrite(pin[line], (buffer[line] & 0x8000) >> 15);
+        buffer[line] = buffer[line] << 1;
       }
     }
   }
